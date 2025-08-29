@@ -1,0 +1,14 @@
+{
+  "name": "bfhl-api",
+  "version": "1.0.0",
+  "description": "BFHL REST API challenge - Express implementation",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
