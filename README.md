@@ -3,7 +3,7 @@
 **Route:** `POST /bfhl`  
 **Status code:** `200` on success  
 **Stack:** Node.js + Express  
-**Hosting:** Works on Vercel (via `@vercel/node`), Render, Railway, or Heroku.
+**Hosting:** Works on Vercel (via `@vercel/node`)
 
 ## Customize Required Fields
 
