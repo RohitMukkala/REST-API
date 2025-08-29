@@ -3,10 +3,12 @@
 **Route:** `POST /bfhl`  
 **Status code:** `200` on success  
 **Stack:** Node.js + Express  
-**Hosting:** Works on Vercel (via `@vercel/node`) or Render/Railway/Heroku.
+**Hosting:** Works on Vercel (via `@vercel/node`), Render, Railway, or Heroku.
 
-## Customize required fields
-Set these (env vars) to match the problem statement:
+## Customize Required Fields
+
+Set these environment variables to match the problem statement:
+
 - `FULL_NAME` (lowercase with underscores, e.g. `john_doe`)
 - `DOB_DDMMYYYY` (e.g. `17091999`)
 - `EMAIL` (e.g. `john@xyz.com`)
@@ -14,7 +16,8 @@ Set these (env vars) to match the problem statement:
 
 The API returns `user_id` in the format `<full_name>_<ddmmyyyy>`, e.g. `john_doe_17091999`.
 
-## Run locally
+## Run Locally
+
 ```bash
 npm install
 npm start
@@ -22,11 +25,12 @@ npm start
 ```
 
 ## Deploy to Vercel
+
 ```bash
-# Install vercel CLI if needed
+# Install Vercel CLI if needed
 npm i -g vercel
 
-# Set env vars (example)
+# Set environment variables (example)
 vercel env add FULL_NAME
 vercel env add DOB_DDMMYYYY
 vercel env add EMAIL
@@ -37,23 +41,27 @@ vercel --prod
 ```
 
 ## Deploy to Render
-1. Create a new **Web Service**, connect the GitHub repo.
+
+1. Create a new **Web Service** and connect the GitHub repo.
 2. Build Command: `npm install`
 3. Start Command: `npm start`
 4. Add environment variables (`FULL_NAME`, `DOB_DDMMYYYY`, `EMAIL`, `ROLL_NUMBER`).
-5. After deploy, your endpoint will be: `https://<your-service>.onrender.com/bfhl`
+5. After deployment, your endpoint will be: `https://<your-service>.onrender.com/bfhl`
 
-## Request format
+## Request Format
+
 ```json
 {
-  "data": ["a","1","334","4","R","$"]
+  "data": ["a", "1", "334", "4", "R", "$"]
 }
 ```
 
-## Sample responses (match the question paper)
+## Sample Responses (match the question paper)
 
-- Example A input: `{"data":["a","1","334","4","R","$"]}`  
-  Output (using defaults):  
+- **Example A**  
+  Input: `{"data":["a","1","334","4","R","$"]}`  
+  Output (using defaults):
+
   ```json
   {
     "is_success": true,
@@ -61,16 +69,18 @@ vercel --prod
     "email": "john@xyz.com",
     "roll_number": "ABCD123",
     "odd_numbers": ["1"],
-    "even_numbers": ["334","4"],
-    "alphabets": ["A","R"],
+    "even_numbers": ["334", "4"],
+    "alphabets": ["A", "R"],
     "special_characters": ["$"],
     "sum": "339",
     "concat_string": "Ra"
   }
   ```
 
-- Example B input: `{"data":["2","a","y","4","&","-","*","5","92","b"]}`  
-  Output:  
+- **Example B**  
+  Input: `{"data":["2","a","y","4","&","-","*","5","92","b"]}`  
+  Output:
+
   ```json
   {
     "is_success": true,
@@ -78,16 +88,17 @@ vercel --prod
     "email": "john@xyz.com",
     "roll_number": "ABCD123",
     "odd_numbers": ["5"],
-    "even_numbers": ["2","4","92"],
-    "alphabets": ["A","Y","B"],
-    "special_characters": ["&","-","*"],
+    "even_numbers": ["2", "4", "92"],
+    "alphabets": ["A", "Y", "B"],
+    "special_characters": ["&", "-", "*"],
     "sum": "103",
     "concat_string": "ByA"
   }
   ```
 
-- Example C input: `{"data": ["A","ABcD","DOE"]}`  
-  Output:  
+- **Example C**  
+  Input: `{"data": ["A", "ABcD", "DOE"]}`  
+  Output:
   ```json
   {
     "is_success": true,
@@ -96,7 +107,7 @@ vercel --prod
     "roll_number": "ABCD123",
     "odd_numbers": [],
     "even_numbers": [],
-    "alphabets": ["A","ABCD","DOE"],
+    "alphabets": ["A", "ABCD", "DOE"],
     "special_characters": [],
     "sum": "0",
     "concat_string": "EoDdCbAa"
@@ -104,6 +115,7 @@ vercel --prod
   ```
 
 ## Notes
+
 - Numbers are treated as **strings** in the response (per requirement).
 - Non-digit / non-alpha tokens are returned as `special_characters`.
 - `concat_string` is built from **all alphabetic characters**, reversed, with **alternating caps** starting **Upper**.
